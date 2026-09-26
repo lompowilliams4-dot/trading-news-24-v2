@@ -1,4 +1,5 @@
 import { Newspaper } from "lucide-react"
+import { TimeAgo } from "./time-ago"
 
 type NewsItem = {
   title: string
@@ -43,17 +44,6 @@ async function fetchFeed(feed: { url: string; source: string }): Promise<NewsIte
   }
 }
 
-function timeAgo(pubDate: string): string {
-  const diffMs = Date.now() - new Date(pubDate).getTime()
-  const minutes = Math.floor(diffMs / 60000)
-  if (minutes < 1) return "à l'instant"
-  if (minutes < 60) return `il y a ${minutes} min`
-  const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `il y a ${hours} h`
-  const days = Math.floor(hours / 24)
-  return `il y a ${days} j`
-}
-
 export async function NewsFeed() {
   const results = await Promise.all(FEEDS.map(fetchFeed))
   const allItems = results
@@ -90,7 +80,7 @@ export async function NewsFeed() {
             <div className="min-w-0">
               <p className="text-sm sm:text-[15px] font-medium leading-snug">{item.title}</p>
               <p className="mt-1 text-[11px] sm:text-xs text-muted-foreground">
-                {item.source} · {timeAgo(item.pubDate)}
+                {item.source} · <TimeAgo pubDate={item.pubDate} />
               </p>
             </div>
           </a>
