@@ -32,7 +32,7 @@ export function EconomicCalendar() {
         </h2>
       </div>
       <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
-        Les prochains événements qui peuvent faire bouger les marchés.
+        Les événements des prochaines semaines qui peuvent faire bouger les marchés — faites défiler pour voir les dates à venir.
       </p>
       <div className="mt-5 rounded-2xl border bg-card overflow-hidden">
         <div ref={containerRef} className="tradingview-widget-container" />
