@@ -11,8 +11,9 @@
   --border: 226 232 240;
 }
 
+/* Sombre automatique UNIQUEMENT si l'utilisateur n'a pas choisi explicitement */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: 9 9 11;
     --foreground: 250 250 250;
     --card: 24 24 27;
@@ -20,6 +21,16 @@
     --muted: 39 39 42;
     --border: 39 39 42;
   }
+}
+
+/* Sombre forcé par le bouton, quel que soit le système */
+:root[data-theme="dark"] {
+  --background: 9 9 11;
+  --foreground: 250 250 250;
+  --card: 24 24 27;
+  --muted-foreground: 161 161 170;
+  --muted: 39 39 42;
+  --border: 39 39 42;
 }
 
 body {
